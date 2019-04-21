@@ -43,6 +43,7 @@ class Store {
         this.observer.subscribe(handler)
         return () => {
             this.observer.unsubscribe(handler)
+            return handler
         }
     }
 

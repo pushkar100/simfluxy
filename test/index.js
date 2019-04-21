@@ -56,6 +56,16 @@ describe('Basic operations', () => {
         assert.deepEqual(myStore.getState(), initialState)
     })
 
+    it('Dispatching an invalid action must throw an error', () => {
+        assert.throws(function() { myStore.dispatch(undefined) }, Error)
+        assert.throws(function() { myStore.dispatch(1) }, Error)
+        assert.throws(function() { myStore.dispatch([1, 2]) }, Error)
+        assert.throws(function() {
+            myStore.dispatch(() => {})
+        }, Error)
+        assert.throws(function() { myStore.dispatch(false) }, Error)
+    })
+
     it('Dispatching an action to set a primitive value inside state', () => {
         myStore.dispatch(actions.setCount(5))
         assert.equal(myStore.getState().countAndObject.count, 5)
@@ -118,6 +128,13 @@ describe('Testing subscription to state changes (pub-sub)', () => {
         assert.throws(function() { myStore.subscribe('Hello') }, Error)
         assert.throws(function() { myStore.subscribe([]) }, Error)
         assert.throws(function() { myStore.subscribe(true) }, Error)
+    })
+
+    it('Re-subscribing a subscribed handler must return the handler itself', () => {
+        const handler = (resData) => console.log
+        var subbed = myStore.subscribe(handler)
+            // Subbed will unsubscribe the subscribed handler and return it
+        assert.equal(myStore.subscribe(handler)(), subbed())
     })
 
     it('Subscribed handler must be notified when state changes', (done) => {
