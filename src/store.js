@@ -1,5 +1,5 @@
 import Observer from './observer'
-import thunk from './thunk'
+import wait from './wait'
 
 class Store {
     constructor(reducer) {
@@ -31,8 +31,8 @@ class Store {
         this.observer.subscribe(handler)
     }
 
-    thunk(aPromise, actionType) {
-        thunk(aPromise, actionType, this.dispatch)
+    wait(aPromise, actionType) {
+        wait(aPromise, actionType, this.dispatch)
     }
 }
 
