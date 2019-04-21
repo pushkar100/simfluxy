@@ -4,7 +4,7 @@ const combineReducers = (reducers) => {
         let currentState = initialState
         const newState = {}
         keys.forEach((key) => {
-            newState[key] = reducers[key](currentState, action)
+            newState[key] = reducers[key](currentState[key], action)
             currentState = {
                 ...currentState,
                 ...newState
