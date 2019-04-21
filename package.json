@@ -46,13 +46,16 @@
     "homepage": "https://github.com/pushkar100/simflux#README",
     "nyc": {
         "check-coverage": true,
-        "branches": 80,
-        "lines": 80,
-        "statements": 80,
-        "functions": 80,
+        "branches": 100,
+        "lines": 100,
+        "statements": 100,
+        "functions": 100,
         "reporter": [
             "text",
             "lcov"
         ]
-    }
+    },
+    "includes": [
+        "src"
+    ]
 }
