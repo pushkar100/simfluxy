@@ -6,15 +6,15 @@ describe('Testing Initial Setup', () => {
     const myStore = new Store(reducers)
 
     it('Initial State cannot be anything other than an object', () => {
-        assert.throws(function() { myStore.initState(undefined) }, Error)
-        assert.throws(function() { myStore.initState([1, 2, "Hi"]) }, Error)
-        assert.throws(function() { myStore.initState(function xyz() {}) }, Error)
-        assert.throws(function() { myStore.initState(function() {}) }, Error)
-        assert.throws(function() { myStore.initState(() => {}) }, Error)
-        assert.throws(function() { myStore.initState(null) }, Error)
-        assert.throws(function() { myStore.initState(5) }, Error)
-        assert.throws(function() { myStore.initState('Hello') }, Error)
-        assert.throws(function() { myStore.initState(true) }, Error)
+        assert.throws(() => { myStore.initState(undefined) }, Error)
+        assert.throws(() => { myStore.initState([1, 2, 'Hi']) }, Error)
+        assert.throws(() => { myStore.initState(() => {}) }, Error)
+        assert.throws(() => { myStore.initState(() => {}) }, Error)
+        assert.throws(() => { myStore.initState(() => {}) }, Error)
+        assert.throws(() => { myStore.initState(null) }, Error)
+        assert.throws(() => { myStore.initState(5) }, Error)
+        assert.throws(() => { myStore.initState('Hello') }, Error)
+        assert.throws(() => { myStore.initState(true) }, Error)
     })
 
     it('Initial State must deep equal object that was passed', () => {
@@ -57,13 +57,13 @@ describe('Basic operations', () => {
     })
 
     it('Dispatching an invalid action must throw an error', () => {
-        assert.throws(function() { myStore.dispatch(undefined) }, Error)
-        assert.throws(function() { myStore.dispatch(1) }, Error)
-        assert.throws(function() { myStore.dispatch([1, 2]) }, Error)
-        assert.throws(function() {
+        assert.throws(() => { myStore.dispatch(undefined) }, Error)
+        assert.throws(() => { myStore.dispatch(1) }, Error)
+        assert.throws(() => { myStore.dispatch([1, 2]) }, Error)
+        assert.throws(() => {
             myStore.dispatch(() => {})
         }, Error)
-        assert.throws(function() { myStore.dispatch(false) }, Error)
+        assert.throws(() => { myStore.dispatch(false) }, Error)
     })
 
     it('Dispatching an action to set a primitive value inside state', () => {
@@ -121,19 +121,19 @@ describe('Testing subscription to state changes (pub-sub)', () => {
     myStore.initState(initialState)
 
     it('Subscribed handler cannot be anything other than a (callback) function', () => {
-        assert.throws(function() { myStore.subscribe({}) }, Error)
-        assert.throws(function() { myStore.subscribe(undefined) }, Error)
-        assert.throws(function() { myStore.subscribe(null) }, Error)
-        assert.throws(function() { myStore.subscribe(5) }, Error)
-        assert.throws(function() { myStore.subscribe('Hello') }, Error)
-        assert.throws(function() { myStore.subscribe([]) }, Error)
-        assert.throws(function() { myStore.subscribe(true) }, Error)
+        assert.throws(() => { myStore.subscribe({}) }, Error)
+        assert.throws(() => { myStore.subscribe(undefined) }, Error)
+        assert.throws(() => { myStore.subscribe(null) }, Error)
+        assert.throws(() => { myStore.subscribe(5) }, Error)
+        assert.throws(() => { myStore.subscribe('Hello') }, Error)
+        assert.throws(() => { myStore.subscribe([]) }, Error)
+        assert.throws(() => { myStore.subscribe(true) }, Error)
     })
 
     it('Re-subscribing a subscribed handler must return the handler itself', () => {
-        const handler = (resData) => console.log
-        var subbed = myStore.subscribe(handler)
-            // Subbed will unsubscribe the subscribed handler and return it
+        const handler = () => {}
+        const subbed = myStore.subscribe(handler)
+        // Subbed will unsubscribe the subscribed handler and return it
         assert.equal(myStore.subscribe(handler)(), subbed())
     })
 
@@ -161,7 +161,7 @@ describe('Unsubscribing', () => {
     myStore.initState(initialState)
 
     it('Subscribing a handler must return a function (i.e to unsubscribe later)', () => {
-        const handler = (resData) => console.log
+        const handler = resData => console.log
         const unsubscribe = myStore.subscribe(handler)
         assert.typeOf(unsubscribe, 'function')
     })
@@ -219,7 +219,7 @@ describe('Multiple state changes', () => {
             if (flag === 2) {
                 done()
             }
-            flag++;
+            flag++
         }
 
         myStore.subscribe(handler)
@@ -239,26 +239,26 @@ describe('Basic async checks: wait()', () => {
     myStore.initState(initialState)
 
     it('wait() function cannot accept anything other than a promise as first parameter', () => {
-        assert.throws(function() { myStore.wait(undefined) }, Error)
-        assert.throws(function() { myStore.wait(null) }, Error)
-        assert.throws(function() { myStore.wait(1) }, Error)
-        assert.throws(function() { myStore.wait("Hello") }, Error)
-        assert.throws(function() { myStore.wait(false) }, Error)
-        assert.throws(function() { myStore.wait({ a: 1 }) }, Error)
-        assert.throws(function() { myStore.wait([1, 2]) }, Error)
-        assert.throws(function() { myStore.wait(() => {}) }, Error)
-        assert.throws(function() { myStore.wait(function x() {}) }, Error)
+        assert.throws(() => { myStore.wait(undefined) }, Error)
+        assert.throws(() => { myStore.wait(null) }, Error)
+        assert.throws(() => { myStore.wait(1) }, Error)
+        assert.throws(() => { myStore.wait('Hello') }, Error)
+        assert.throws(() => { myStore.wait(false) }, Error)
+        assert.throws(() => { myStore.wait({ a: 1 }) }, Error)
+        assert.throws(() => { myStore.wait([1, 2]) }, Error)
+        assert.throws(() => { myStore.wait(() => {}) }, Error)
+        assert.throws(() => { myStore.wait(() => {}) }, Error)
     })
 
     it('wait() function cannot accept anything other than a string as second parameter', () => {
-        assert.throws(function() { myStore.wait(new Promise(), undefined) }, Error)
-        assert.throws(function() { myStore.wait(new Promise(), null) }, Error)
-        assert.throws(function() { myStore.wait(new Promise(), false) }, Error)
-        assert.throws(function() { myStore.wait(new Promise(), { a: 1 }) }, Error)
-        assert.throws(function() { myStore.wait(new Promise(), [1]) }, Error)
-        assert.throws(function() { myStore.wait(new Promise(), () => {}) }, Error)
-        assert.throws(function() { myStore.wait(new Promise(), function x() {}) }, Error)
-        assert.throws(function() { myStore.wait(new Promise(), new Promise()) }, Error)
+        assert.throws(() => { myStore.wait(new Promise(), undefined) }, Error)
+        assert.throws(() => { myStore.wait(new Promise(), null) }, Error)
+        assert.throws(() => { myStore.wait(new Promise(), false) }, Error)
+        assert.throws(() => { myStore.wait(new Promise(), { a: 1 }) }, Error)
+        assert.throws(() => { myStore.wait(new Promise(), [1]) }, Error)
+        assert.throws(() => { myStore.wait(new Promise(), () => {}) }, Error)
+        assert.throws(() => { myStore.wait(new Promise(), () => {}) }, Error)
+        assert.throws(() => { myStore.wait(new Promise(), new Promise()) }, Error)
     })
 
     it('wait() must dispatch correctly when promise gets resolved', (done) => {
