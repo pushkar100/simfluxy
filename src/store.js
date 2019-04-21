@@ -1,13 +1,14 @@
 import Observer from './observer'
 import wait from './wait'
+import combineReducers from './combine-reducers'
 
 class Store {
-    constructor(reducer) {
+    constructor(reducers) {
         this.state = {}
         this.observer = new Observer()
         this.initialized = false
-        this.reducer = reducer
         this.dispatch = this.dispatch.bind(this)
+        this.runThroughReducers = combineReducers(reducers)
     }
 
     getState() {
@@ -23,7 +24,7 @@ class Store {
     }
 
     dispatch(action) {
-        this.state = this.reducer(this.state, action)
+        this.state = this.runThroughReducers(this.state, action)
         this.observer.publish(this.state)
     }
 
