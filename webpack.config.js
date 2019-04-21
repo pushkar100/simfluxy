@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin')
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'simflux.js',
+        filename: 'index.js',
         path: path.resolve(__dirname, './dist')
     },
     module: {

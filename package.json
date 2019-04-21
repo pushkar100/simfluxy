@@ -2,7 +2,7 @@
     "name": "simflux",
     "version": "1.0.0",
     "description": "A simplified version of redux for state management including async operation in actions",
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "dependencies": {},
     "devDependencies": {
         "@babel/core": "7.4.3",

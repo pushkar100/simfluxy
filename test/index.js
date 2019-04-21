@@ -1,5 +1,5 @@
 import { assert } from 'chai'
-import Store from '../src/store'
+import Store from '../src/index'
 import { actions, reducers } from './test-data'
 
 describe('Testing Initial Setup', () => {
@@ -133,7 +133,7 @@ describe('Testing subscription to state changes (pub-sub)', () => {
     it('Re-subscribing a subscribed handler must return the handler itself', () => {
         const handler = () => {}
         const subbed = myStore.subscribe(handler)
-        // Subbed will unsubscribe the subscribed handler and return it
+            // Subbed will unsubscribe the subscribed handler and return it
         assert.equal(myStore.subscribe(handler)(), subbed())
     })
 
