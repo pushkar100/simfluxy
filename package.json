@@ -28,7 +28,7 @@
         "build": "webpack",
         "lint": "eslint src/.",
         "lint:fix": "eslint src/. --fix",
-        "validate": "npm-run-all --parallel lint test"
+        "validate": "npm-run-all --parallel lint test build"
     },
     "repository": {
         "type": "git",
