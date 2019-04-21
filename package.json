@@ -8,6 +8,7 @@
         "@babel/core": "7.4.3",
         "@babel/preset-env": "7.4.3",
         "babel-loader": "8.0.5",
+        "@babel/register": "7.4.0",
         "chai": "4.2.0",
         "clean-webpack-plugin": "2.0.1",
         "eslint": "5.16.0",
@@ -19,7 +20,7 @@
         "webpack-cli": "3.3.0"
     },
     "scripts": {
-        "test": "mocha",
+        "test": "./node_modules/.bin/mocha --require @babel/register",
         "watch:test": "mocha --watch",
         "build": "webpack",
         "lint": "eslint src/."

@@ -12,13 +12,7 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             exclude: /node_modules|dist/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/env'], // [ '@babel/<presetName>', ... ]
-                    plugins: [] // plugins format: [ <pluginName>, ... ]
-                }
-            }
+            use: ['babel-loader']
         }]
     },
     plugins: [
