@@ -1,8 +1,8 @@
 module.exports = {
     "extends": "airbnb-base",
-    "env": [
+    "env": {
         "mocha": true
-    ],
+    },
     "plugins": [
         "import"
     ],
@@ -10,6 +10,7 @@ module.exports = {
         "comma-dangle": [1, "never"],
         "no-console": 1,
         "indent": [2, 4],
-        "semi": [2, "never"]
+        "semi": [2, "never"],
+        "max-len": ["error", { "code": 120 }]
     }
 };

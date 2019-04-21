@@ -6,7 +6,7 @@ const utils = {
         return fn instanceof Function
     },
     isPromise(prom) {
-        return typeof prom === "object" && prom !== null && typeof prom.then === 'function'
+        return typeof prom === 'object' && prom !== null && typeof prom.then === 'function'
     },
     isString(str) {
         return typeof str === 'string'
