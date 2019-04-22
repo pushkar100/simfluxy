@@ -5,6 +5,20 @@ import { actions, reducers } from './test-data'
 describe('Testing Initial Setup', () => {
     const myStore = new Store(reducers)
 
+    it('Reducers must be an object whose keys contain functions', () => {
+        const invalidReducers = {
+            ...reducers,
+            poison: 'blue'
+        }
+        assert.throws(() => new Store(undefined), Error)
+        assert.throws(() => new Store(null), Error)
+        assert.throws(() => new Store(4), Error)
+        assert.throws(() => new Store('Hi'), Error)
+        assert.throws(() => new Store([1, 2]), Error)
+        assert.throws(() => new Store(() => {}), Error)
+        assert.throws(() => new Store(invalidReducers), Error)
+    })
+
     it('Initial State cannot be anything other than an object', () => {
         assert.throws(() => { myStore.initState(undefined) }, Error)
         assert.throws(() => { myStore.initState([1, 2, 'Hi']) }, Error)
@@ -133,7 +147,7 @@ describe('Testing subscription to state changes (pub-sub)', () => {
     it('Re-subscribing a subscribed handler must return the handler itself', () => {
         const handler = () => {}
         const subbed = myStore.subscribe(handler)
-            // Subbed will unsubscribe the subscribed handler and return it
+        // Subbed will unsubscribe the subscribed handler and return it
         assert.equal(myStore.subscribe(handler)(), subbed())
     })
 
