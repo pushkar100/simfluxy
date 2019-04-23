@@ -28,7 +28,7 @@
         "webpack-cli": "3.3.0"
     },
     "scripts": {
-        "release": "semantic-release pre && npm publish && semantic-release post",
+        "release": "npm run semantic-release && npm publish",
         "commit": "git-cz",
         "test": "nyc ./node_modules/.bin/mocha --require @babel/register",
         "watch:test": "./node_modules/.bin/mocha --require @babel/register --watch",
