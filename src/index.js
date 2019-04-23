@@ -18,7 +18,7 @@ class Store {
 
     initState(initialState) {
         if (!utils.isObject(initialState)) {
-            throw Error('SimFlux:> initState() expects an object')
+            throw Error('SimFluxy:> initState() expects an object')
         }
         if (!this.initialized) {
             this.state = initialState
@@ -30,7 +30,7 @@ class Store {
 
     dispatch(action) {
         if (!utils.isValidAction(action)) {
-            throw Error('SimFlux:> dispatch() expects an object action where action.type is a string')
+            throw Error('SimFluxy:> dispatch() expects an object action where action.type is a string')
         }
         this.state = this.runThroughReducers(this.state, action)
         this.observer.publish(this.state)
@@ -38,7 +38,7 @@ class Store {
 
     subscribe(handler) {
         if (!utils.isFunction(handler)) {
-            throw Error('SimFlux:> subscribe() expects a function')
+            throw Error('SimFluxy:> subscribe() expects a function')
         }
         this.observer.subscribe(handler)
         return () => {
@@ -49,7 +49,7 @@ class Store {
 
     wait(aPromise, actionType) {
         if (!(utils.isPromise(aPromise) && utils.isString(actionType))) {
-            throw Error('SimFlux:> wait() expects a promise followed by a string')
+            throw Error('SimFluxy:> wait() expects a promise followed by a string')
         }
         wait(aPromise, actionType, this.dispatch)
     }

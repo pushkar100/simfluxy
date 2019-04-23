@@ -1,5 +1,5 @@
 {
-    "name": "simflux",
+    "name": "simfluxy",
     "version": "1.0.0",
     "description": "A simplified version of redux for state management including async operation in actions",
     "main": "dist/index.js",
@@ -34,7 +34,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/pushkar100/simflux.git"
+        "url": "https://github.com/pushkar100/simfluxy.git"
     },
     "files": [
         "dist"
@@ -50,9 +50,9 @@
     "author": "Pushkar DK <pushkar100@gmail.com> (http://www.pushkardk.com/)",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/pushkar100/simflux/issues"
+        "url": "https://github.com/pushkar100/simfluxy/issues"
     },
-    "homepage": "https://github.com/pushkar100/simflux#README",
+    "homepage": "https://github.com/pushkar100/simfluxy#README",
     "nyc": {
         "check-coverage": true,
         "branches": 100,
