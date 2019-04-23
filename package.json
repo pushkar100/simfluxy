@@ -1,6 +1,6 @@
 {
     "name": "simfluxy",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A simplified version of redux for state management including async operation in actions",
     "main": "dist/index.js",
     "dependencies": {},
