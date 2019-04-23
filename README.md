@@ -81,6 +81,12 @@ If your use case does not extend beyond simple dispatches and async disptaches, 
 
 Simfluxy does not use any middleware. You will have to make your async calls via a promise passed to `wait()` which dispatches the resolved response as payload to the action specified
 
+4. How does it handle concurrent async dispatches?
+
+Simfluxy will handle the dispatches in the order they are received. Async dispatches are received in the order that they are triggered, adhering to the race-condition.
+
+We can even have async dispatches within other async dispatches (`wait()` inside `wait()`). Again, the race condition applies here as well
+
 3. What is the size of this library?
 
 It can be considered as a _micro-library_ not exceeding `5KB` (Minified). Gzipping should yield a much smaller size.
