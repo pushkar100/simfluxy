@@ -21,7 +21,7 @@ Simluxy does *not* use any middleware to support asynchronous tasks before dispa
 
 ## Getting Started
 
-```
+```javascript
 // Basic usage:
 import Simfluxy from 'simfluxy'
 
@@ -48,7 +48,7 @@ myStore.wait(aPromise, actionType) /* promise: An es6 promise that resolves/reje
 - `Store(reducers)`
     - A constructor function that initializes the store
     - `reducers`: A plain object containing keys that reflect the high level store properties. Each key must be a method that receives two parameters:
-        - Reference to the initial or existing state
+        - Reference to the initial or existing state property (and not the entire state)
         - An action (String) that specifies the type of `dispatch()`
     - Each reducer returns a new state (without mutating the old one). This new state replaces existing state
     - No explicit return value (`undefined`)
@@ -73,9 +73,9 @@ myStore.wait(aPromise, actionType) /* promise: An es6 promise that resolves/reje
 
 ## FAQs
 
-1. Can we use the library instead of other tools like redux/mobx?
+1. Can we use this library instead of other tools like redux/mobx?
 
-If your use case does not extend beyond simple dispatches and async disptaches, then yes!
+If your use case does not extend beyond multiple reducers, simple dispatches, and async disptaches, then yes!
 
 2. How is async dispatch handled?
 
@@ -83,7 +83,7 @@ Simfluxy does not use any middleware. You will have to make your async calls via
 
 4. How does it handle concurrent async dispatches?
 
-Simfluxy will handle the dispatches in the order they are received. Async dispatches are received in the order that they are triggered, adhering to the race-condition.
+Simfluxy will handle the dispatches in the order they are received. Async dispatches are received in the order that the promises to `wait()` are resolved, adhering to the race-condition.
 
 We can even have async dispatches within other async dispatches (`wait()` inside `wait()`). Again, the race condition applies here as well
 
@@ -93,10 +93,10 @@ It can be considered as a _micro-library_ not exceeding `5KB` (Minified). Gzippi
 
 ## Contributing
 
-Fork repository - https://github.com/pushkar100/simfluxy
+https://github.com/pushkar100/simfluxy
 
 **Linting, testing, and code coverage: `npm run validate`**
 
 ## Author(s)
 
-Pushkar DK
+[Pushkar DK](https://github.com/pushkar100)

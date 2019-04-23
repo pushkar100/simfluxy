@@ -45,7 +45,11 @@
         "management",
         "javascript",
         "asynchronous",
-        "library"
+        "library",
+        "microlibrary",
+        "dispatch",
+        "store",
+        "globalstore"
     ],
     "author": "Pushkar DK <pushkar100@gmail.com> (http://www.pushkardk.com/)",
     "license": "MIT",
