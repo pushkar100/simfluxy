@@ -37,7 +37,8 @@
         "lint:fix": "eslint src/. --fix",
         "validate": "npm-run-all --parallel lint test build",
         "report-coverage": "cat ./coverage/lcov.info | codecov",
-        "semantic-release": "semantic-release"
+        "semantic-release": "semantic-release",
+        "dummy": "ls"
     },
     "repository": {
         "type": "git",
