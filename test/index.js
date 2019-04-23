@@ -301,7 +301,7 @@ describe('Concurrent async dispatches: wait()', () => {
 
     myStore.initState(initialState)
 
-    it('Multiple concurrent wait()s must dispatch correctly in the order that the promises get resolved (race)', (done) => {
+    it('Multiple concurrent wait()s must dispatch in the order that the promises get resolved in (race)', (done) => {
         const actType = 'SET_COUNT'
         const setCountAfter100ms = new Promise((resolve, reject) => {
             setTimeout(() => {
