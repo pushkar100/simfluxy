@@ -19,6 +19,10 @@ Simluxy does *not* use any middleware to support asynchronous tasks before dispa
 
 **Use: `npm i --save simfluxy`**
 
+## NPM
+
+[Link to package](https://www.npmjs.com/package/simfluxy)
+
 ## Getting Started
 
 ```javascript
